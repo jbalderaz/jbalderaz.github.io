@@ -24,7 +24,7 @@
 <p>The Colorado Avalanche are having a historic season. They are the first team in the league to reach 50 wins and have already clinched the #1 seed in the Western Conference and have won the Presidents’ Trophy. But how dominant have they truly been?</p>
 <p>There is no doubt that the Avalanche are the best team in the NHL right now. They lead the league in most goals scored at 287, least goals against at 191 and lead the league in penalty kill percentage at 81.5%</p>
 <p>That means Colorado has consistently had the #1 offense and #1 defense all season, and it’s thanks to their team dynamic.</p>
-<p>The big three of Nathan MacKinnon, Cale Makar and Martin Nečas are all top-30 in the league and points, tied for the most players with the Edmonton Oilers.</p>
+<p>The big three of Nathan MacKinnon, Cale Makar and Martin Nečas are all top-30 in the league in points, tied for the most players in the top-30 with the Edmonton Oilers.</p>
 <p>There are many factors to the Avalanche’s success, so let’s take a look at an example of how successful they have been compared to their competition.</p>
 <div class="cell">
 <details class="code-fold">
@@ -630,23 +630,23 @@ font-style: inherit;">"2023-24"</span>)</span>
 <span id="cb3-41">  )</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
-<div id="iegdniuzni" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iegdniuzni table {
+<div id="hgxryaoavo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hgxryaoavo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iegdniuzni thead, #iegdniuzni tbody, #iegdniuzni tfoot, #iegdniuzni tr, #iegdniuzni td, #iegdniuzni th {
+#hgxryaoavo thead, #hgxryaoavo tbody, #hgxryaoavo tfoot, #hgxryaoavo tr, #hgxryaoavo td, #hgxryaoavo th {
   border-style: none;
 }
 
-#iegdniuzni p {
+#hgxryaoavo p {
   margin: 0;
   padding: 0;
 }
 
-#iegdniuzni .gt_table {
+#hgxryaoavo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -672,12 +672,12 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-left-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_caption {
+#hgxryaoavo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iegdniuzni .gt_title {
+#hgxryaoavo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -689,7 +689,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-bottom-width: 0;
 }
 
-#iegdniuzni .gt_subtitle {
+#hgxryaoavo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -701,7 +701,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-top-width: 0;
 }
 
-#iegdniuzni .gt_heading {
+#hgxryaoavo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -713,13 +713,13 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_bottom_border {
+#hgxryaoavo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_col_headings {
+#hgxryaoavo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -734,7 +734,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_col_heading {
+#hgxryaoavo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -754,7 +754,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   overflow-x: hidden;
 }
 
-#iegdniuzni .gt_column_spanner_outer {
+#hgxryaoavo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -766,15 +766,15 @@ font-style: inherit;">"2023-24"</span>)</span>
   padding-right: 4px;
 }
 
-#iegdniuzni .gt_column_spanner_outer:first-child {
+#hgxryaoavo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iegdniuzni .gt_column_spanner_outer:last-child {
+#hgxryaoavo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iegdniuzni .gt_column_spanner {
+#hgxryaoavo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -786,11 +786,11 @@ font-style: inherit;">"2023-24"</span>)</span>
   width: 100%;
 }
 
-#iegdniuzni .gt_spanner_row {
+#hgxryaoavo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iegdniuzni .gt_group_heading {
+#hgxryaoavo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -816,7 +816,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   text-align: left;
 }
 
-#iegdniuzni .gt_empty_group_heading {
+#hgxryaoavo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -831,15 +831,15 @@ font-style: inherit;">"2023-24"</span>)</span>
   vertical-align: middle;
 }
 
-#iegdniuzni .gt_from_md > :first-child {
+#hgxryaoavo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iegdniuzni .gt_from_md > :last-child {
+#hgxryaoavo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iegdniuzni .gt_row {
+#hgxryaoavo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -858,7 +858,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   overflow-x: hidden;
 }
 
-#iegdniuzni .gt_stub {
+#hgxryaoavo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -871,7 +871,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   padding-right: 5px;
 }
 
-#iegdniuzni .gt_stub_row_group {
+#hgxryaoavo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -885,15 +885,15 @@ font-style: inherit;">"2023-24"</span>)</span>
   vertical-align: top;
 }
 
-#iegdniuzni .gt_row_group_first td {
+#hgxryaoavo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iegdniuzni .gt_row_group_first th {
+#hgxryaoavo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iegdniuzni .gt_summary_row {
+#hgxryaoavo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -903,16 +903,16 @@ font-style: inherit;">"2023-24"</span>)</span>
   padding-right: 5px;
 }
 
-#iegdniuzni .gt_first_summary_row {
+#hgxryaoavo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_first_summary_row.thick {
+#hgxryaoavo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iegdniuzni .gt_last_summary_row {
+#hgxryaoavo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -922,7 +922,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-bottom-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_grand_summary_row {
+#hgxryaoavo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -932,7 +932,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   padding-right: 5px;
 }
 
-#iegdniuzni .gt_first_grand_summary_row {
+#hgxryaoavo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -942,7 +942,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-top-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_last_grand_summary_row_top {
+#hgxryaoavo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -952,11 +952,11 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-bottom-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_striped {
+#hgxryaoavo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iegdniuzni .gt_table_body {
+#hgxryaoavo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -965,7 +965,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-bottom-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_footnotes {
+#hgxryaoavo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -979,7 +979,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_footnote {
+#hgxryaoavo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -988,7 +988,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   padding-right: 5px;
 }
 
-#iegdniuzni .gt_sourcenotes {
+#hgxryaoavo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1002,7 +1002,7 @@ font-style: inherit;">"2023-24"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#iegdniuzni .gt_sourcenote {
+#hgxryaoavo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1010,72 +1010,72 @@ font-style: inherit;">"2023-24"</span>)</span>
   padding-right: 5px;
 }
 
-#iegdniuzni .gt_left {
+#hgxryaoavo .gt_left {
   text-align: left;
 }
 
-#iegdniuzni .gt_center {
+#hgxryaoavo .gt_center {
   text-align: center;
 }
 
-#iegdniuzni .gt_right {
+#hgxryaoavo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iegdniuzni .gt_font_normal {
+#hgxryaoavo .gt_font_normal {
   font-weight: normal;
 }
 
-#iegdniuzni .gt_font_bold {
+#hgxryaoavo .gt_font_bold {
   font-weight: bold;
 }
 
-#iegdniuzni .gt_font_italic {
+#hgxryaoavo .gt_font_italic {
   font-style: italic;
 }
 
-#iegdniuzni .gt_super {
+#hgxryaoavo .gt_super {
   font-size: 65%;
 }
 
-#iegdniuzni .gt_footnote_marks {
+#hgxryaoavo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iegdniuzni .gt_asterisk {
+#hgxryaoavo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iegdniuzni .gt_indent_1 {
+#hgxryaoavo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iegdniuzni .gt_indent_2 {
+#hgxryaoavo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iegdniuzni .gt_indent_3 {
+#hgxryaoavo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iegdniuzni .gt_indent_4 {
+#hgxryaoavo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iegdniuzni .gt_indent_5 {
+#hgxryaoavo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#iegdniuzni .katex-display {
+#hgxryaoavo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#iegdniuzni div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hgxryaoavo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
