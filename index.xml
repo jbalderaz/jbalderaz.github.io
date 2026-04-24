@@ -746,23 +746,23 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
 <span id="cb3-52">  )</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
-<div id="ncsquoohjr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ncsquoohjr table {
+<div id="hhcjguhctb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hhcjguhctb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ncsquoohjr thead, #ncsquoohjr tbody, #ncsquoohjr tfoot, #ncsquoohjr tr, #ncsquoohjr td, #ncsquoohjr th {
+#hhcjguhctb thead, #hhcjguhctb tbody, #hhcjguhctb tfoot, #hhcjguhctb tr, #hhcjguhctb td, #hhcjguhctb th {
   border-style: none;
 }
 
-#ncsquoohjr p {
+#hhcjguhctb p {
   margin: 0;
   padding: 0;
 }
 
-#ncsquoohjr .gt_table {
+#hhcjguhctb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -788,12 +788,12 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-left-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_caption {
+#hhcjguhctb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ncsquoohjr .gt_title {
+#hhcjguhctb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -805,7 +805,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-bottom-width: 0;
 }
 
-#ncsquoohjr .gt_subtitle {
+#hhcjguhctb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -817,7 +817,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-top-width: 0;
 }
 
-#ncsquoohjr .gt_heading {
+#hhcjguhctb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -829,13 +829,13 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_bottom_border {
+#hhcjguhctb .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_col_headings {
+#hhcjguhctb .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -850,7 +850,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_col_heading {
+#hhcjguhctb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -870,7 +870,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   overflow-x: hidden;
 }
 
-#ncsquoohjr .gt_column_spanner_outer {
+#hhcjguhctb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -882,15 +882,15 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   padding-right: 4px;
 }
 
-#ncsquoohjr .gt_column_spanner_outer:first-child {
+#hhcjguhctb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ncsquoohjr .gt_column_spanner_outer:last-child {
+#hhcjguhctb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ncsquoohjr .gt_column_spanner {
+#hhcjguhctb .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -902,11 +902,11 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   width: 100%;
 }
 
-#ncsquoohjr .gt_spanner_row {
+#hhcjguhctb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ncsquoohjr .gt_group_heading {
+#hhcjguhctb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -932,7 +932,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   text-align: left;
 }
 
-#ncsquoohjr .gt_empty_group_heading {
+#hhcjguhctb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -947,15 +947,15 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   vertical-align: middle;
 }
 
-#ncsquoohjr .gt_from_md > :first-child {
+#hhcjguhctb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ncsquoohjr .gt_from_md > :last-child {
+#hhcjguhctb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ncsquoohjr .gt_row {
+#hhcjguhctb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -974,7 +974,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   overflow-x: hidden;
 }
 
-#ncsquoohjr .gt_stub {
+#hhcjguhctb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -987,7 +987,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   padding-right: 5px;
 }
 
-#ncsquoohjr .gt_stub_row_group {
+#hhcjguhctb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1001,15 +1001,15 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   vertical-align: top;
 }
 
-#ncsquoohjr .gt_row_group_first td {
+#hhcjguhctb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ncsquoohjr .gt_row_group_first th {
+#hhcjguhctb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ncsquoohjr .gt_summary_row {
+#hhcjguhctb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1019,16 +1019,16 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   padding-right: 5px;
 }
 
-#ncsquoohjr .gt_first_summary_row {
+#hhcjguhctb .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_first_summary_row.thick {
+#hhcjguhctb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ncsquoohjr .gt_last_summary_row {
+#hhcjguhctb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1038,7 +1038,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-bottom-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_grand_summary_row {
+#hhcjguhctb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1048,7 +1048,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   padding-right: 5px;
 }
 
-#ncsquoohjr .gt_first_grand_summary_row {
+#hhcjguhctb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1058,7 +1058,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-top-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_last_grand_summary_row_top {
+#hhcjguhctb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1068,11 +1068,11 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-bottom-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_striped {
+#hhcjguhctb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ncsquoohjr .gt_table_body {
+#hhcjguhctb .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1081,7 +1081,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-bottom-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_footnotes {
+#hhcjguhctb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1095,7 +1095,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_footnote {
+#hhcjguhctb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1104,7 +1104,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   padding-right: 5px;
 }
 
-#ncsquoohjr .gt_sourcenotes {
+#hhcjguhctb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1118,7 +1118,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   border-right-color: #D3D3D3;
 }
 
-#ncsquoohjr .gt_sourcenote {
+#hhcjguhctb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1126,72 +1126,72 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
   padding-right: 5px;
 }
 
-#ncsquoohjr .gt_left {
+#hhcjguhctb .gt_left {
   text-align: left;
 }
 
-#ncsquoohjr .gt_center {
+#hhcjguhctb .gt_center {
   text-align: center;
 }
 
-#ncsquoohjr .gt_right {
+#hhcjguhctb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ncsquoohjr .gt_font_normal {
+#hhcjguhctb .gt_font_normal {
   font-weight: normal;
 }
 
-#ncsquoohjr .gt_font_bold {
+#hhcjguhctb .gt_font_bold {
   font-weight: bold;
 }
 
-#ncsquoohjr .gt_font_italic {
+#hhcjguhctb .gt_font_italic {
   font-style: italic;
 }
 
-#ncsquoohjr .gt_super {
+#hhcjguhctb .gt_super {
   font-size: 65%;
 }
 
-#ncsquoohjr .gt_footnote_marks {
+#hhcjguhctb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ncsquoohjr .gt_asterisk {
+#hhcjguhctb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ncsquoohjr .gt_indent_1 {
+#hhcjguhctb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ncsquoohjr .gt_indent_2 {
+#hhcjguhctb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ncsquoohjr .gt_indent_3 {
+#hhcjguhctb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ncsquoohjr .gt_indent_4 {
+#hhcjguhctb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ncsquoohjr .gt_indent_5 {
+#hhcjguhctb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ncsquoohjr .katex-display {
+#hhcjguhctb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ncsquoohjr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hhcjguhctb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1412,7 +1412,7 @@ font-style: inherit;">"Northern Illinois"</span>)</span>
 </div>
 </div>
 </div>
-<p>Both UTEP and Northern Illinois did not have a successful season last season. If they had joined a year earlier, it would have ranked them both second to last and dead last in the conference. Clearly, this is a situation of trying to freshen things up for both parties. It’s a move to stop the bleeding for the conference after the Pac-12 disaster. For UTEP and NIU, it will give them the chance to be in a new environment with new recruiting strategies. It will be interesting to see how North Dakota State fares in their first season in the FBS and if their success in the FCS will transfer over.</p>
+<p>Both UTEP and Northern Illinois did not have a successful season last season. If they had joined a year earlier, it would have ranked them both second to last and dead last in the conference in terms of SRS. Clearly, this is a situation of trying to freshen things up for both parties. It’s a move to stop the bleeding for the conference after the Pac-12 disaster. For UTEP and NIU, it will give them the chance to be in a new environment with new recruiting strategies. It will be interesting to see how North Dakota State fares in their first season in the FBS and if their success in the FCS will transfer over.</p>
 <p>The Mountain West is undeniably weaker off now with those teams leaving and not adding much of value in return. As of right now we can only speculate what can become of the Mountain West and the Pac-12 as we enter this new era of college football.</p>
 
 
