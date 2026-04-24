@@ -10,7 +10,1421 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website about sports and data</description>
 <generator>quarto-1.9.36</generator>
-<lastBuildDate>Fri, 10 Apr 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 24 Apr 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Will the Mountain West Conference survive?</title>
+  <dc:creator>Jason Balderaz</dc:creator>
+  <link>https://your-website-url.example.com/posts/will-the-mountain-west-survive/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>On September 12, 2024, news broke that 5 Mountain West Conference teams were leaving the conference to join the new iteration of the Pac-12. It was to be expected as the Pac-12 was looking to rebuild after 10 teams had left the previous summer over media rights disputes. Their first natural target was teams from the Mountain West because they had just reached a deal for teams, Oregon State and Washington State, to fill their schedule against those teams.</p>
+<p>It’s the latest development in the ever-changing conference realignment era of college football. Teams move to different places in hopes of a better opportunity for success, NIL fund and reputation. The current era of the Mountain West began in 1999, when eight members of the Western Athletic Conference met at Denver International Airport to agree on terms for what would become the Mountain West Conference, with the hope of pursuing expansion.</p>
+<p>Since then, teams like Utah, BYU and TCU have joined and since left the conference, marking the conference’s history with realignment. San Jose State, Boise State, Utah State and Hawai’i joined the conference in the 2010’s, solidifying the current iteration of the Mountain West. Now the conference faces realignment again as Colorado State, San Diego State, Utah State, Fresno State and Boise State are set to join the Pac-12 starting the 2026-27 college football season.</p>
+<p>This marks a major concern for the Mountain West, as they are losing valued programs and storied rivalries are now in jeopardy. Let’s take a look at how the departing teams have performed during their tenure in the Mountain West since the conference’s beginning. To do this, we compare overall win percentage to see how they have performed based on their strength of schedule and average win margin (Simple Rating System).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggrepel)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gt)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">alltime <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"alltimemwc.csv"</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">departing <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Colorado State"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Boise State"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Utah State"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"San Diego State"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Fresno State"</span>)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">departingteams <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> alltime <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(School <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> departing)</span>
+<span id="cb1-10"></span>
+<span id="cb1-11">winpct <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> alltime <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(School, OPct) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb1-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">winpct =</span> OPct,</span>
+<span id="cb1-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">srs =</span> SRS)</span>
+<span id="cb1-16"></span>
+<span id="cb1-17"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>winpct, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>OPct, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>srs), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgrey"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>departingteams, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>OPct, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>SRS), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4F2D7F"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(</span>
+<span id="cb1-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>departingteams, </span>
+<span id="cb1-21">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>OPct, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>SRS, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label=</span>School, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb1-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Win Percentage"</span>,</span>
+<span id="cb1-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SRS"</span>,</span>
+<span id="cb1-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"How teams have performed all-time"</span>, </span>
+<span id="cb1-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The value of the five departing Mountain West teams is undeniable, and the league will suffer for it. Data is since 1999."</span>, </span>
+<span id="cb1-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Sports-Reference.com | By Jason Balderaz"</span></span>
+<span id="cb1-28">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb1-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb1-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>), </span>
+<span id="cb1-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>), </span>
+<span id="cb1-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb1-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span>,</span>
+<span id="cb1-36">    )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/will-the-mountain-west-survive/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the teams in the Mountain West are clearly underperforming compared to power conference teams, no team has ever won a national championship or really been competitive to win one. They stay competitive in Group of 6 play. bowl game appearances, conference championships and power conference wins are valuable to the conference. And when a team like Boise State, who was just in the College Football Playoff two years ago and had a Heisman runner-up, the level of competitiveness dwindles dramatically for the Mountain West.</p>
+<p>Even though Boise State has clearly been the powerhouse of the conference, the Air Force Falcons actually lead the league in postseason appearances and wins. They had been to 15 bowls since 1999 and have won nine of those contests, compared to Boise State going to 12 and winning only six of those. Which is somewhat good news for the Mountain West, as they keep a historically decent program in Air Force.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">bowlwins <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> alltime <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(School) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb2-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">bowlw =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(BW), </span>
+<span id="cb2-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">bowlapp =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(BG)) </span>
+<span id="cb2-6"></span>
+<span id="cb2-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb2-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>bowlwins, </span>
+<span id="cb2-10">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-11">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>School, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend=</span>School,</span>
+<span id="cb2-12">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>bowlw, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend=</span>bowlapp),</span>
+<span id="cb2-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lightgray"</span>,</span>
+<span id="cb2-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb2-15">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb2-17">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>bowlwins,</span>
+<span id="cb2-18">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-19">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>School,</span>
+<span id="cb2-20">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>bowlw,</span>
+<span id="cb2-21">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bowl Wins"</span></span>
+<span id="cb2-22">    ),</span>
+<span id="cb2-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb2-24">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb2-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>bowlwins,</span>
+<span id="cb2-27">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb2-28">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>School,</span>
+<span id="cb2-29">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>bowlapp,</span>
+<span id="cb2-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bowl Appearances"</span></span>
+<span id="cb2-31">    ),</span>
+<span id="cb2-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb2-33">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-34"> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bowl Wins"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4F2D7F"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgray"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-35">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb2-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bowl Appearances"</span>,</span>
+<span id="cb2-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The value of the postseason"</span>, </span>
+<span id="cb2-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is ratio of bowl appearnces and wins of each Mountain West team since 1999."</span>, </span>
+<span id="cb2-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Sports-Reference.com | By Jason Balderaz"</span></span>
+<span id="cb2-40">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-41">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-42">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-43">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb2-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>), </span>
+<span id="cb2-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>), </span>
+<span id="cb2-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb2-47">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span>,</span>
+<span id="cb2-48">    )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/will-the-mountain-west-survive/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Shortly after the news broke that those five teams were leaving, the MWC quickly sprang into action to do some damage control. The seven remaining schools signed a memorandum of understanding to remain with the Mountain West. The league was now sitting at a net loss of five teams, so the natural next move was to look toward expansion. On December 18, 2025, Northern Illinois University and the University of Texas at El Paso agreed to join the conference. The move was met with mixed emotions as many were still pulling for a merger between the Pac-12 and the MWC, but it seemed neither side wanted to be the little brother in the situation.</p>
+<p>Then, on February 9, 2026, North Dakota State agreed to join the Mountain West as the newest FBS team. This move sent shockwaves through the college football landscape and NDSU is regarded as the greatest FCS team of all time and many were pulling for their jump into the FBS. Other schools such as UC Davis and Grand Canyon University, have also agreed to join the program as non-football members. Now the conference has 10 football members, with a net loss of only two, but the question to be asked is, is it enough?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">allteams25 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"teams25.csv"</span>)</span>
+<span id="cb3-2"></span>
+<span id="cb3-3">allteams25 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cols_label</span>(</span>
+<span id="cb3-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">OPct =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PCT"</span>,</span>
+<span id="cb3-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">OL =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Losses"</span>,</span>
+<span id="cb3-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">OW =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wins"</span>,</span>
+<span id="cb3-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">BA =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bowl Appearance?"</span> </span>
+<span id="cb3-10">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-11">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_header</span>(</span>
+<span id="cb3-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"How the new additions compare"</span>,</span>
+<span id="cb3-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Here is the current state of the Mountain West Conference at the end of the 2025-26 season."</span></span>
+<span id="cb3-14">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb3-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"title"</span>)</span>
+<span id="cb3-17">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb3-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"subtitle"</span>)</span>
+<span id="cb3-20">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(</span>
+<span id="cb3-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"**By:** Jason Balderaz  |  **Source:** NHL.com"</span>)</span>
+<span id="cb3-23">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-24">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-25">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_column_labels</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">everything</span>()),</span>
+<span id="cb3-26">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb3-27">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_borders</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sides =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">px</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)),</span>
+<span id="cb3-28">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<span id="cb3-29">     )</span>
+<span id="cb3-30">   ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-31">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_row_striping</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-32">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_table_lines</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-33">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fmt_percent</span>(</span>
+<span id="cb3-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(OPct, CPct),</span>
+<span id="cb3-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">decimals =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb3-36">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb3-39">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_fill</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#041E42"</span>),</span>
+<span id="cb3-40">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>)</span>
+<span id="cb3-41">      ),</span>
+<span id="cb3-42">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_body</span>(</span>
+<span id="cb3-43">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rows =</span> School <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UTEP"</span>)</span>
+<span id="cb3-44">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-45">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb3-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb3-47">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_fill</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BA0C2F"</span>),</span>
+<span id="cb3-48">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>)</span>
+<span id="cb3-49">      ),</span>
+<span id="cb3-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_body</span>(</span>
+<span id="cb3-51">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rows =</span> School <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Northern Illinois"</span>)</span>
+<span id="cb3-52">  )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div id="guvhrbtbbo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#guvhrbtbbo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#guvhrbtbbo thead, #guvhrbtbbo tbody, #guvhrbtbbo tfoot, #guvhrbtbbo tr, #guvhrbtbbo td, #guvhrbtbbo th {
+  border-style: none;
+}
+
+#guvhrbtbbo p {
+  margin: 0;
+  padding: 0;
+}
+
+#guvhrbtbbo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#guvhrbtbbo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#guvhrbtbbo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#guvhrbtbbo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#guvhrbtbbo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#guvhrbtbbo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#guvhrbtbbo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#guvhrbtbbo .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#guvhrbtbbo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#guvhrbtbbo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#guvhrbtbbo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#guvhrbtbbo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#guvhrbtbbo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#guvhrbtbbo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#guvhrbtbbo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guvhrbtbbo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#guvhrbtbbo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#guvhrbtbbo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#guvhrbtbbo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guvhrbtbbo .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#guvhrbtbbo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guvhrbtbbo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#guvhrbtbbo .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guvhrbtbbo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#guvhrbtbbo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guvhrbtbbo .gt_left {
+  text-align: left;
+}
+
+#guvhrbtbbo .gt_center {
+  text-align: center;
+}
+
+#guvhrbtbbo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#guvhrbtbbo .gt_font_normal {
+  font-weight: normal;
+}
+
+#guvhrbtbbo .gt_font_bold {
+  font-weight: bold;
+}
+
+#guvhrbtbbo .gt_font_italic {
+  font-style: italic;
+}
+
+#guvhrbtbbo .gt_super {
+  font-size: 65%;
+}
+
+#guvhrbtbbo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#guvhrbtbbo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#guvhrbtbbo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#guvhrbtbbo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#guvhrbtbbo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#guvhrbtbbo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#guvhrbtbbo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#guvhrbtbbo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#guvhrbtbbo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="11" class="gt_heading gt_title gt_font_normal" style="text-align: left; color: #000000; font-weight: bold;">How the new additions compare</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="11" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left; color: #000000;">Here is the current state of the Mountain West Conference at the end of the 2025-26 season.</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="School" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">School</th>
+<th id="Conf" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Conf</th>
+<th id="OW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Wins</th>
+<th id="OL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Losses</th>
+<th id="OPct" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">PCT</th>
+<th id="CW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">CW</th>
+<th id="CL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">CL</th>
+<th id="CPct" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">CPct</th>
+<th id="SRS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">SRS</th>
+<th id="SOS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">SOS</th>
+<th id="BA" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Bowl Appearance?</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="School">Boise State</td>
+<td class="gt_row gt_left" headers="Conf">MWC</td>
+<td class="gt_row gt_right" headers="OW">9</td>
+<td class="gt_row gt_right" headers="OL">5</td>
+<td class="gt_row gt_right" headers="OPct">64.3%</td>
+<td class="gt_row gt_right" headers="CW">6</td>
+<td class="gt_row gt_right" headers="CL">2</td>
+<td class="gt_row gt_right" headers="CPct">75.0%</td>
+<td class="gt_row gt_right" headers="SRS">3.69</td>
+<td class="gt_row gt_right" headers="SOS">-1.10</td>
+<td class="gt_row gt_left" headers="BA">Y</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School">Nevada-Las Vegas</td>
+<td class="gt_row gt_left gt_striped" headers="Conf">MWC</td>
+<td class="gt_row gt_right gt_striped" headers="OW">10</td>
+<td class="gt_row gt_right gt_striped" headers="OL">4</td>
+<td class="gt_row gt_right gt_striped" headers="OPct">71.4%</td>
+<td class="gt_row gt_right gt_striped" headers="CW">6</td>
+<td class="gt_row gt_right gt_striped" headers="CL">2</td>
+<td class="gt_row gt_right gt_striped" headers="CPct">75.0%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS">-0.12</td>
+<td class="gt_row gt_right gt_striped" headers="SOS">-6.05</td>
+<td class="gt_row gt_left gt_striped" headers="BA">Y</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="School">New Mexico</td>
+<td class="gt_row gt_left" headers="Conf">MWC</td>
+<td class="gt_row gt_right" headers="OW">9</td>
+<td class="gt_row gt_right" headers="OL">4</td>
+<td class="gt_row gt_right" headers="OPct">69.2%</td>
+<td class="gt_row gt_right" headers="CW">6</td>
+<td class="gt_row gt_right" headers="CL">2</td>
+<td class="gt_row gt_right" headers="CPct">75.0%</td>
+<td class="gt_row gt_right" headers="SRS">0.67</td>
+<td class="gt_row gt_right" headers="SOS">-4.64</td>
+<td class="gt_row gt_left" headers="BA">Y</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School">San Diego State</td>
+<td class="gt_row gt_left gt_striped" headers="Conf">MWC</td>
+<td class="gt_row gt_right gt_striped" headers="OW">9</td>
+<td class="gt_row gt_right gt_striped" headers="OL">4</td>
+<td class="gt_row gt_right gt_striped" headers="OPct">69.2%</td>
+<td class="gt_row gt_right gt_striped" headers="CW">6</td>
+<td class="gt_row gt_right gt_striped" headers="CL">2</td>
+<td class="gt_row gt_right gt_striped" headers="CPct">75.0%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS">3.48</td>
+<td class="gt_row gt_right gt_striped" headers="SOS">-5.06</td>
+<td class="gt_row gt_left gt_striped" headers="BA">Y</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="School">Fresno State</td>
+<td class="gt_row gt_left" headers="Conf">MWC</td>
+<td class="gt_row gt_right" headers="OW">9</td>
+<td class="gt_row gt_right" headers="OL">4</td>
+<td class="gt_row gt_right" headers="OPct">69.2%</td>
+<td class="gt_row gt_right" headers="CW">5</td>
+<td class="gt_row gt_right" headers="CL">3</td>
+<td class="gt_row gt_right" headers="CPct">62.5%</td>
+<td class="gt_row gt_right" headers="SRS">-0.82</td>
+<td class="gt_row gt_right" headers="SOS">-6.36</td>
+<td class="gt_row gt_left" headers="BA">Y</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School">Hawaii</td>
+<td class="gt_row gt_left gt_striped" headers="Conf">MWC</td>
+<td class="gt_row gt_right gt_striped" headers="OW">9</td>
+<td class="gt_row gt_right gt_striped" headers="OL">4</td>
+<td class="gt_row gt_right gt_striped" headers="OPct">69.2%</td>
+<td class="gt_row gt_right gt_striped" headers="CW">5</td>
+<td class="gt_row gt_right gt_striped" headers="CL">3</td>
+<td class="gt_row gt_right gt_striped" headers="CPct">62.5%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS">-0.17</td>
+<td class="gt_row gt_right gt_striped" headers="SOS">-5.71</td>
+<td class="gt_row gt_left gt_striped" headers="BA">Y</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="School">Utah State</td>
+<td class="gt_row gt_left" headers="Conf">MWC</td>
+<td class="gt_row gt_right" headers="OW">6</td>
+<td class="gt_row gt_right" headers="OL">7</td>
+<td class="gt_row gt_right" headers="OPct">46.2%</td>
+<td class="gt_row gt_right" headers="CW">4</td>
+<td class="gt_row gt_right" headers="CL">4</td>
+<td class="gt_row gt_right" headers="CPct">50.0%</td>
+<td class="gt_row gt_right" headers="SRS">-2.75</td>
+<td class="gt_row gt_right" headers="SOS">-2.06</td>
+<td class="gt_row gt_left" headers="BA">Y</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School">Air Force</td>
+<td class="gt_row gt_left gt_striped" headers="Conf">MWC</td>
+<td class="gt_row gt_right gt_striped" headers="OW">4</td>
+<td class="gt_row gt_right gt_striped" headers="OL">8</td>
+<td class="gt_row gt_right gt_striped" headers="OPct">33.3%</td>
+<td class="gt_row gt_right gt_striped" headers="CW">3</td>
+<td class="gt_row gt_right gt_striped" headers="CL">5</td>
+<td class="gt_row gt_right gt_striped" headers="CPct">37.5%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS">-6.35</td>
+<td class="gt_row gt_right gt_striped" headers="SOS">-4.18</td>
+<td class="gt_row gt_left gt_striped" headers="BA">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="School">Wyoming</td>
+<td class="gt_row gt_left" headers="Conf">MWC</td>
+<td class="gt_row gt_right" headers="OW">4</td>
+<td class="gt_row gt_right" headers="OL">8</td>
+<td class="gt_row gt_right" headers="OPct">33.3%</td>
+<td class="gt_row gt_right" headers="CW">2</td>
+<td class="gt_row gt_right" headers="CL">6</td>
+<td class="gt_row gt_right" headers="CPct">25.0%</td>
+<td class="gt_row gt_right" headers="SRS">-10.09</td>
+<td class="gt_row gt_right" headers="SOS">-4.92</td>
+<td class="gt_row gt_left" headers="BA">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School">Nevada</td>
+<td class="gt_row gt_left gt_striped" headers="Conf">MWC</td>
+<td class="gt_row gt_right gt_striped" headers="OW">3</td>
+<td class="gt_row gt_right gt_striped" headers="OL">9</td>
+<td class="gt_row gt_right gt_striped" headers="OPct">25.0%</td>
+<td class="gt_row gt_right gt_striped" headers="CW">2</td>
+<td class="gt_row gt_right gt_striped" headers="CL">6</td>
+<td class="gt_row gt_right gt_striped" headers="CPct">25.0%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS">-13.55</td>
+<td class="gt_row gt_right gt_striped" headers="SOS">-3.96</td>
+<td class="gt_row gt_left gt_striped" headers="BA">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="School">San Jose State</td>
+<td class="gt_row gt_left" headers="Conf">MWC</td>
+<td class="gt_row gt_right" headers="OW">3</td>
+<td class="gt_row gt_right" headers="OL">9</td>
+<td class="gt_row gt_right" headers="OPct">25.0%</td>
+<td class="gt_row gt_right" headers="CW">2</td>
+<td class="gt_row gt_right" headers="CL">6</td>
+<td class="gt_row gt_right" headers="CPct">25.0%</td>
+<td class="gt_row gt_right" headers="SRS">-13.03</td>
+<td class="gt_row gt_right" headers="SOS">-3.78</td>
+<td class="gt_row gt_left" headers="BA">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School">Colorado State</td>
+<td class="gt_row gt_left gt_striped" headers="Conf">MWC</td>
+<td class="gt_row gt_right gt_striped" headers="OW">2</td>
+<td class="gt_row gt_right gt_striped" headers="OL">10</td>
+<td class="gt_row gt_right gt_striped" headers="OPct">16.7%</td>
+<td class="gt_row gt_right gt_striped" headers="CW">1</td>
+<td class="gt_row gt_right gt_striped" headers="CL">7</td>
+<td class="gt_row gt_right gt_striped" headers="CPct">12.5%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS">-12.63</td>
+<td class="gt_row gt_right gt_striped" headers="SOS">-0.71</td>
+<td class="gt_row gt_left gt_striped" headers="BA">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="School" style="background-color: #BA0C2F; color: #FFFFFF">Northern Illinois</td>
+<td class="gt_row gt_left" headers="Conf" style="background-color: #BA0C2F; color: #FFFFFF">MAC</td>
+<td class="gt_row gt_right" headers="OW" style="background-color: #BA0C2F; color: #FFFFFF">3</td>
+<td class="gt_row gt_right" headers="OL" style="background-color: #BA0C2F; color: #FFFFFF">9</td>
+<td class="gt_row gt_right" headers="OPct" style="background-color: #BA0C2F; color: #FFFFFF">25.0%</td>
+<td class="gt_row gt_right" headers="CW" style="background-color: #BA0C2F; color: #FFFFFF">2</td>
+<td class="gt_row gt_right" headers="CL" style="background-color: #BA0C2F; color: #FFFFFF">6</td>
+<td class="gt_row gt_right" headers="CPct" style="background-color: #BA0C2F; color: #FFFFFF">25.0%</td>
+<td class="gt_row gt_right" headers="SRS" style="background-color: #BA0C2F; color: #FFFFFF">-14.25</td>
+<td class="gt_row gt_right" headers="SOS" style="background-color: #BA0C2F; color: #FFFFFF">-7.08</td>
+<td class="gt_row gt_left" headers="BA" style="background-color: #BA0C2F; color: #FFFFFF">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="School" style="background-color: #041E42; color: #FFFFFF">UTEP</td>
+<td class="gt_row gt_left gt_striped" headers="Conf" style="background-color: #041E42; color: #FFFFFF">CUSA</td>
+<td class="gt_row gt_right gt_striped" headers="OW" style="background-color: #041E42; color: #FFFFFF">2</td>
+<td class="gt_row gt_right gt_striped" headers="OL" style="background-color: #041E42; color: #FFFFFF">10</td>
+<td class="gt_row gt_right gt_striped" headers="OPct" style="background-color: #041E42; color: #FFFFFF">16.7%</td>
+<td class="gt_row gt_right gt_striped" headers="CW" style="background-color: #041E42; color: #FFFFFF">1</td>
+<td class="gt_row gt_right gt_striped" headers="CL" style="background-color: #041E42; color: #FFFFFF">7</td>
+<td class="gt_row gt_right gt_striped" headers="CPct" style="background-color: #041E42; color: #FFFFFF">12.5%</td>
+<td class="gt_row gt_right gt_striped" headers="SRS" style="background-color: #041E42; color: #FFFFFF">-14.63</td>
+<td class="gt_row gt_right gt_striped" headers="SOS" style="background-color: #041E42; color: #FFFFFF">-7.21</td>
+<td class="gt_row gt_left gt_striped" headers="BA" style="background-color: #041E42; color: #FFFFFF">N</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="11" class="gt_sourcenote"><strong>By:</strong> Jason Balderaz | <strong>Source:</strong> NHL.com</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>Both UTEP and Northern Illinois did not have a successful season last season. If they had joined a year earlier, it would have ranked them both second to last and dead last in the conference. Clearly, this is a situation of trying to freshen things up for both parties. It’s a move to stop the bleeding for the conference after the Pac-12 disaster. For UTEP and NIU, it will give them the chance to be in a new environment with new recruiting strategies. It will be interesting to see how North Dakota State fares in their first season in the FBS and if their success in the FCS will transfer over.</p>
+<p>The Mountain West is undeniably weaker off now with those teams leaving and not adding much of value in return. As of right now we can only speculate what can become of the Mountain West and the Pac-12 as we enter this new era of college football.</p>
+
+
+
+ ]]></description>
+  <category>football</category>
+  <category>ncaa</category>
+  <category>mwc</category>
+  <guid>https://your-website-url.example.com/posts/will-the-mountain-west-survive/</guid>
+  <pubDate>Fri, 24 Apr 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/will-the-mountain-west-survive/image2.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>The Colorado Avalanche are the most dominant team in hockey, but they have a major weakness</title>
   <dc:creator>Jason Balderaz</dc:creator>
